@@ -1,24 +1,40 @@
-services:
+version: '3.8'
 
-  laravel-docker:
-    container_name: laravel-docker
-    build: .
+services:
+  web:
+    image: php:8.1-apache
+    container_name: php-apache-web
     volumes:
-      - ./laravel-app:/var/www/html
+      - ./src:/var/www/html
     ports:
-      - 9000:80
-  
-  mysql_db:
-    image: mysql:latest
+      - "8080:80"
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: mysql-db
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: taravel_docker
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+    volumes:
+      - db_data:/var/lib/mysql
     ports:
-    - 3306:3306
-  
+      - "3306:3306"
+
   phpmyadmin:
-    image: phpmyadmin:latest
-    ports:
-      - 9001:80
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
     environment:
-      - PMA_ARBITRARY=1
+      PMA_HOST: db
+      PMA_USER: exampleuser
+      PMA_PASSWORD: examplepass
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+
+volumes:
+  db_data:
