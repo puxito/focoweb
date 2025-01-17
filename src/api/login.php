@@ -1,53 +1,35 @@
 <?php
-require_once '../includes/db.php'; // Conexión a la base de datos
-require_once '../includes/functions.php'; // Función para obtener datos del usuario
+require_once '../includes/db.php';
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Obtener datos del formulario
-    $identifier = $_POST['identifier'] ?? null; // Nickname o correo
+    $identifier = $_POST['identifier'] ?? null;
     $password = $_POST['password'] ?? null;
 
-    // Validación básica
     if (!$identifier || !$password) {
         header("Location: ../pages/login.php?message=Por favor, ingresa tu nickname/correo y contraseña.&type=danger");
         exit;
     }
 
     try {
-        // Obtener los datos del usuario
-        $user = getUserData($pdo, $identifier);
+        $stmt = $pdo->prepare("SELECT idUser, passwd, idRoleFK, nickname, pfp FROM Users WHERE nickname = ? OR email = ?");
+        $stmt->execute([$identifier, $identifier]);
+        $user = $stmt->fetch();
 
-        if (!$user) {
-            // Usuario no encontrado
-            header("Location: ../pages/login.php?message=Usuario no encontrado.&type=danger");
-            exit;
-        }
-
-        if (password_verify($password, $user['passwd'])) {
-            // Guardar los datos del usuario en la sesión
+        if ($user && password_verify($password, $user['passwd'])) {
             $_SESSION['user_id'] = $user['idUser'];
             $_SESSION['role_id'] = $user['idRoleFK'];
             $_SESSION['user_nickname'] = $user['nickname'];
             $_SESSION['user_pfp'] = $user['pfp'];
 
-            // Redirigir según el rol
-            if ($user['idRoleFK'] == 1) { // 1: Admin
-                header('Location: ../pages/dashboard.php?message=Bienvenido, administrador.&type=success');
-            } elseif ($user['idRoleFK'] == 2) { // 2: Usuario normal
-                header('Location: ../pages/index.php?message=Bienvenido, ' . htmlspecialchars($user['nickname']) . '.&type=success');
-            } else {
-                header('Location: ../pages/dashboard.php?message=Bienvenido a tu panel, ' . htmlspecialchars($user['nickname']) . '.&type=success');
-            }
+            header('Location: ../pages/dashboard.php');
             exit;
         } else {
-            // Contraseña incorrecta
-            header("Location: ../pages/login.php?message=Contraseña incorrecta.&type=danger");
+            header("Location: ../pages/login.php?message=Credenciales incorrectas.&type=danger");
             exit;
         }
     } catch (Exception $e) {
-        // Error al obtener los datos
-        header("Location: ../pages/login.php?message=" . $e->getMessage() . "&type=danger");
+        header("Location: ../pages/login.php?message=Error en el sistema.&type=danger");
         exit;
     }
 }

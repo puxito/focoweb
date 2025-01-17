@@ -61,13 +61,29 @@ require_once '../includes/session.php';
         a:hover {
             color: #C6838B;
         }
-        footer {
-            margin-top: auto;
-            background-color: #fff;
-            text-align: center;
-            padding: 10px;
-            border-top: 1px solid #ddd;
-        }
+        /* Footer */
+footer {
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer a {
+    color: #E94E1B;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer a:hover {
+    color: #C62858;
+}
     </style>
 </head>
 <body>
