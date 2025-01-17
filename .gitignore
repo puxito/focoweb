@@ -1,0 +1,49 @@
+# Ignorar configuraciones específicas del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos generados por el entorno de desarrollo
+*.log
+*.sql
+*.sqlite
+*.bak
+*.tmp
+*.swp
+
+# Ignorar archivos de configuración local
+.env
+config.php
+config.local.php
+
+# Ignorar dependencias instaladas
+node_modules/
+vendor/
+
+# Ignorar archivos de compilación
+dist/
+build/
+
+# Ignorar subidas de usuarios
+assets/images/user_uploads/
+
+# Ignorar cachés y datos temporales
+cache/
+tmp/
+*.cache
+
+# Ignorar IDEs y editores
+.idea/
+.vscode/
+*.code-workspace
+
+# Ignorar archivos de Docker
+docker-compose.override.yml
+*.env
+.env.*
+
+# Ignorar bibliotecas o dependencias descargadas manualmente
+libs/
+third_party/
+
+# Ignorar otros archivos específicos del proyecto
+assets/images/defaults/profile.png
