@@ -51,6 +51,6 @@ php -S localhost:8000 -t public
 
 ## 🐳 Usando Docker (Opcional)
 
- - 1. Si prefieres usar Docker, puedes levantar el entorno con el siguiente comando:
+ - Si prefieres usar Docker, puedes levantar el entorno con el siguiente comando:
    - docker-compose up -d
- - 2. Esto creará contenedores para PHP, MySQL y phpMyAdmin. Luego accede a http://localhost:8080.
+ - Esto creará contenedores para PHP, MySQL y phpMyAdmin. Luego accede a http://localhost:8080.
