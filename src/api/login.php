@@ -7,7 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? null;
 
     if (!$identifier || !$password) {
-        header("Location: ../pages/login.php?message=Por favor, ingresa tu nickname/correo y contraseña.&type=danger");
+        $_SESSION['alert'] = ['message' => 'Por favor, ingresa tu nickname/correo y contraseña.', 'type' => 'danger'];
+        header("Location: ../pages/login.php");
         exit;
     }
 
@@ -22,14 +23,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_nickname'] = $user['nickname'];
             $_SESSION['user_pfp'] = $user['pfp'];
 
-            header('Location: ../pages/dashboard.php');
+            if ($user['idRoleFK'] == 1) {
+                header("Location: ../pages/dashboard.php");
+            } else {
+                header("Location: ../pages/index.php");
+            }
             exit;
         } else {
-            header("Location: ../pages/login.php?message=Credenciales incorrectas.&type=danger");
+            $_SESSION['alert'] = ['message' => 'Credenciales incorrectas.', 'type' => 'danger'];
+            header("Location: ../pages/login.php");
             exit;
         }
     } catch (Exception $e) {
-        header("Location: ../pages/login.php?message=Error en el sistema.&type=danger");
+        $_SESSION['alert'] = ['message' => 'Error en el sistema.', 'type' => 'danger'];
+        header("Location: ../pages/login.php");
         exit;
     }
 }

@@ -8,8 +8,17 @@ require_once '../includes/session.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión - FOCO</title>
+
+    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Alertify.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/themes/default.min.css">
+
+    <!-- Custom Styles -->
     <link href="../assets/css/styles.css" rel="stylesheet">
+
     <style>
         body {
             background: linear-gradient(135deg, #E94E1B, #FBEBD5);
@@ -61,42 +70,32 @@ require_once '../includes/session.php';
         a:hover {
             color: #C6838B;
         }
-        /* Footer */
-footer {
-    background-color: #fff;
-    border-top: 1px solid #ddd;
-    text-align: center;
-    padding: 1rem;
-    font-size: 0.9rem;
-    color: #666;
-}
 
-footer p {
-    margin: 0;
-}
+        footer {
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
 
-footer a {
-    color: #E94E1B;
-    text-decoration: none;
-    font-weight: 600;
-}
+        footer a {
+            color: #E94E1B;
+            text-decoration: none;
+            font-weight: 600;
+        }
 
-footer a:hover {
-    color: #C62858;
-}
+        footer a:hover {
+            color: #C62858;
+        }
     </style>
 </head>
 <body>
     <div class="container mt-5">
         <h1>Inicio de Sesión</h1>
 
-        <!-- Mensaje de alerta -->
-        <?php if (isset($_GET['message']) && isset($_GET['type'])): ?>
-            <div class="alert alert-<?php echo htmlspecialchars($_GET['type']); ?>" role="alert">
-                <?php echo htmlspecialchars($_GET['message']); ?>
-            </div>
-        <?php endif; ?>
-
+        <!-- Formulario de inicio de sesión -->
         <form method="POST" action="../api/login.php" class="mt-4">
             <div class="mb-3">
                 <label for="identifier" class="form-label">Nickname o Correo:</label>
@@ -108,6 +107,7 @@ footer a:hover {
             </div>
             <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
         </form>
+
         <p class="mt-4 text-center">
             ¿No tienes cuenta? <a href="register.php">Regístrate</a>
         </p>
@@ -116,5 +116,19 @@ footer a:hover {
     <footer class="mt-5">
         <?php include '../components/footer.php'; ?>
     </footer>
+
+    <!-- Alertify.js Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
+    <script>
+        // Mostrar alertas dinámicas si existen
+        <?php if (isset($_GET['message']) && isset($_GET['type'])): ?>
+            alertify.set('notifier', 'position', 'top-right');
+            alertify.<?php echo htmlspecialchars($_GET['type']); ?>("<?php echo htmlspecialchars($_GET['message']); ?>");
+        <?php endif; ?>
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
