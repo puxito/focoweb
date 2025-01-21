@@ -344,3 +344,67 @@ a {
 a:hover {
     color: #C6838B;
 }
+
+/* Perfil de usuario*/
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px;
+    background-color: #FBEBD5;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul {
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #E94E1B;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.sidebar ul li a:hover {
+    color: #C62858;
+}
+
+.profile-picture {
+    text-align: center;
+    flex-shrink: 0;
+    max-width: 250px;
+}
+
+#profile-pic {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #E94E1B;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: auto;
+}
+
+#nickname-display {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #A62858;
+}
+
+.profile-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
