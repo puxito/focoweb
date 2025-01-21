@@ -4,19 +4,14 @@ require_once '../includes/session.php';
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio de Sesión - FOCO</title>
-
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Alertify.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/alertify.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs/build/css/themes/default.min.css">
-
-    <!-- Custom Styles -->
     <link href="../assets/css/styles.css" rel="stylesheet">
 
     <style>
@@ -29,6 +24,7 @@ require_once '../includes/session.php';
             min-height: 100vh;
             margin: 0;
         }
+
         .container {
             max-width: 500px;
             background: #fff;
@@ -37,20 +33,24 @@ require_once '../includes/session.php';
             box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
             margin: auto;
         }
+
         h1 {
             font-size: 2.5rem;
             font-weight: 700;
             text-align: center;
             color: #E94E1B;
         }
+
         label {
             font-weight: 500;
             color: #A62858;
         }
+
         .form-control {
             border-radius: 10px;
             border: 1px solid #ddd;
         }
+
         .btn-primary {
             background: #A62858;
             border: none;
@@ -60,13 +60,16 @@ require_once '../includes/session.php';
             font-size: 1rem;
             transition: background 0.3s ease;
         }
+
         .btn-primary:hover {
             background: #C6838B;
         }
+
         a {
             color: #E94E1B;
             font-weight: 600;
         }
+
         a:hover {
             color: #C6838B;
         }
@@ -91,11 +94,10 @@ require_once '../includes/session.php';
         }
     </style>
 </head>
+
 <body>
     <div class="container mt-5">
         <h1>Inicio de Sesión</h1>
-
-        <!-- Formulario de inicio de sesión -->
         <form method="POST" action="../api/login.php" class="mt-4">
             <div class="mb-3">
                 <label for="identifier" class="form-label">Nickname o Correo:</label>
@@ -116,19 +118,15 @@ require_once '../includes/session.php';
     <footer class="mt-5">
         <?php include '../components/footer.php'; ?>
     </footer>
-
-    <!-- Alertify.js Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs/build/alertify.min.js"></script>
     <script>
-        // Mostrar alertas dinámicas si existen
         <?php if (isset($_GET['message']) && isset($_GET['type'])): ?>
             alertify.set('notifier', 'position', 'top-right');
             alertify.<?php echo htmlspecialchars($_GET['type']); ?>("<?php echo htmlspecialchars($_GET['message']); ?>");
         <?php endif; ?>
     </script>
-
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
+
 </html>

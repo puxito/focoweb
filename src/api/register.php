@@ -10,23 +10,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pronouns = $_POST['pronouns'] ?? '';
     $bday = $_POST['bday'] ?? null;
 
-    // Validación básica
+
     if (!$nickname || !$email || !$password || !$name || !$pronouns) {
         header("Location: ../pages/register.php?message=Todos los campos obligatorios deben ser completados.&type=danger");
         exit;
     }
 
-    // Validar contraseña
     $passwordRegex = '/^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*])[A-Za-z\\d!@#$%^&*]{8,}$/';
     if (!preg_match($passwordRegex, $password)) {
         header("Location: ../pages/register.php?message=La contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, un número y un carácter especial.&type=danger");
         exit;
     }
 
-    // Hash de la contraseña
     $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-    // Insertar en la base de datos
     try {
         $stmt = $pdo->prepare("
             INSERT INTO Users (idRoleFK, nickname, email, passwd, name, surname, pfp, pronouns, bday)

@@ -44,26 +44,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $uploadDir = '../assets/images/user_uploads/';
 
     try {
-        // Actualizar datos básicos del perfil
+
         $stmt = $pdo->prepare("UPDATE Users SET name = ?, surname = ?, nickname = ?, pronouns = ?, bday = ? WHERE idUser = ?");
         $stmt->execute([$name, $surname, $nickname, $pronouns, $bday, $userId]);
 
-        // Manejar subida de foto de perfil
         if (isset($_FILES['pfp']) && $_FILES['pfp']['error'] === UPLOAD_ERR_OK) {
             $fileTmpPath = $_FILES['pfp']['tmp_name'];
             $fileName = uniqid() . '-' . basename($_FILES['pfp']['name']);
             $filePath = $uploadDir . $fileName;
 
-            // Mover el archivo al directorio deseado
+
             if (move_uploaded_file($fileTmpPath, $filePath)) {
-                // Generar la ruta relativa para la base de datos
+
                 $relativePath = 'assets/images/user_uploads/' . $fileName;
 
-                // Actualizar la base de datos con la nueva ruta
                 $stmt = $pdo->prepare("UPDATE Users SET pfp = ? WHERE idUser = ?");
                 $stmt->execute([$relativePath, $userId]);
 
-                // Opcional: Eliminar la imagen anterior del servidor (si no es la predeterminada)
+                
                 $stmt = $pdo->prepare("SELECT pfp FROM Users WHERE idUser = ?");
                 $stmt->execute([$userId]);
                 $currentPfp = $stmt->fetchColumn();

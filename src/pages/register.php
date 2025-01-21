@@ -4,6 +4,7 @@ require_once '../includes/session.php';
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +17,7 @@ require_once '../includes/session.php';
             color: #333;
             font-family: 'Poppins', sans-serif;
         }
+
         .container {
             max-width: 500px;
             background: #fff;
@@ -23,20 +25,24 @@ require_once '../includes/session.php';
             padding: 30px;
             box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             font-size: 2.5rem;
             font-weight: 700;
             text-align: center;
             color: #E94E1B;
         }
+
         label {
             font-weight: 500;
             color: #A62858;
         }
+
         .form-control {
             border-radius: 10px;
             border: 1px solid #ddd;
         }
+
         .btn-primary {
             background: #A62858;
             border: none;
@@ -46,23 +52,25 @@ require_once '../includes/session.php';
             font-size: 1rem;
             transition: background 0.3s ease;
         }
+
         .btn-primary:hover {
             background: #C6838B;
         }
+
         a {
             color: #E94E1B;
             font-weight: 600;
         }
+
         a:hover {
             color: #C6838B;
         }
     </style>
 </head>
+
 <body>
     <div class="container mt-5">
         <h1>Registro</h1>
-
-        <!-- Mensaje de alerta -->
         <?php if (isset($_GET['message']) && isset($_GET['type'])): ?>
             <div class="alert alert-<?php echo htmlspecialchars($_GET['type']); ?>" role="alert">
                 <?php echo htmlspecialchars($_GET['message']); ?>
@@ -114,4 +122,5 @@ require_once '../includes/session.php';
         <?php include '../components/footer.php'; ?>
     </footer>
 </body>
+
 </html>

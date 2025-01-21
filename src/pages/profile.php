@@ -17,7 +17,6 @@ include '../components/header.php';
 <body>
     <div class="container mt-5">
         <div class="d-flex">
-            <!-- Sidebar -->
             <div class="sidebar bg-light p-3 rounded d-flex flex-column justify-content-between">
                 <ul class="list-unstyled mb-0">
                     <li><a href="profile.php" class="text-decoration-none">Mi Perfil</a></li>
@@ -29,10 +28,7 @@ include '../components/header.php';
                     <li><a href="../api/logout.php" class="text-danger text-decoration-none">Cerrar Sesión</a></li>
                 </ul>
             </div>
-
-            <!-- Contenido principal -->
             <div class="profile-content flex-grow-1 d-flex justify-content-between">
-                <!-- Información del perfil -->
                 <div class="profile-details flex-grow-1 me-4">
                     <h1 class="text-center">Perfil de Usuario</h1>
 
@@ -65,8 +61,6 @@ include '../components/header.php';
                         <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     </form>
                 </div>
-
-                <!-- Foto de perfil -->
                 <div class="profile-picture text-center">
                     <img id="profile-pic" src="" alt="Foto de perfil" class="rounded-circle mb-3">
                     <div id="nickname-display" class="mt-2" style="font-weight: bold; color: #E94E1B;">@Usuario</div>
