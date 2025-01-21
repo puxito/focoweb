@@ -345,17 +345,16 @@ a:hover {
     color: #C6838B;
 }
 
-/* Perfil de usuario*/
-
+/* Sidebar */
 .sidebar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
     padding: 20px;
-    background-color: #FBEBD5;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #FFF8F5;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar ul {
@@ -364,19 +363,76 @@ a:hover {
 }
 
 .sidebar ul li {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .sidebar ul li a {
     color: #E94E1B;
     text-decoration: none;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 .sidebar ul li a:hover {
     color: #C62858;
 }
 
+/* Contenido principal */
+.profile-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 30px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-details {
+    flex-grow: 1;
+    margin-right: 30px;
+}
+
+.profile-details h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #E94E1B;
+    margin-bottom: 20px;
+}
+
+.profile-details .form-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #A62858;
+}
+
+.profile-details input,
+.profile-details select {
+    font-size: 0.95rem;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+.profile-details button {
+    background-color: #E94E1B;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.profile-details button:hover {
+    background-color: #C62858;
+}
+
+/* Foto de perfil */
 .profile-picture {
     text-align: center;
     flex-shrink: 0;
@@ -384,27 +440,35 @@ a:hover {
 }
 
 #profile-pic {
-    width: 150px;
-    height: 150px;
-    border: 2px solid #E94E1B;
+    width: 160px;
+    height: 160px;
+    border: 3px solid #E94E1B;
     object-fit: cover;
     border-radius: 50%;
     margin: auto;
+    transition: transform 0.2s ease;
+}
+
+#profile-pic:hover {
+    transform: scale(1.05);
 }
 
 #nickname-display {
     font-size: 1.2rem;
     font-weight: 600;
     color: #A62858;
+    margin-top: 10px;
 }
 
-.profile-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-content {
+        flex-direction: column;
+    }
+
+    .profile-details {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
 }
 
